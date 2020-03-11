@@ -1,8 +1,7 @@
 import axios from 'axios'
 
 // 配置代理时，需要这里配置
-const BASEURL = process.env.NODE_ENV === 'production' ? '' : '/api';
-axios.defaults.baseURL = BASEURL
+axios.defaults.baseURL = 'https://www.liulongbin.top:8888/api/private/v1/'
 
 // 添加请求拦截器
 axios.interceptors.request.use(function (config) {
