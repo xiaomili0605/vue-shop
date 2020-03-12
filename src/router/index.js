@@ -16,7 +16,15 @@ const routes = [
   {
     path: '/home',
     name: 'home',
-    component: () => import('../views/Home')
+    component: () => import('../views/Home'),
+    // 在home中默认显示welcome组件
+    redirect: '/welcome',
+    children: [
+      {
+        path: '/welcome',
+        component: () => import('../components/Welcome')
+      }
+    ]
   }
 ]
 

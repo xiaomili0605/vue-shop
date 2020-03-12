@@ -5,7 +5,8 @@ axios.defaults.baseURL = 'https://www.liulongbin.top:8888/api/private/v1/'
 
 // 添加请求拦截器
 axios.interceptors.request.use(function (config) {
-// 在发送请求之前做些什么
+  // 每次请求带上 token(第一次是没有token的，因为第一次响应数据中的token才保存sessionStorage中，下次请求就会有了token了)
+  config.headers.Authorization = window.sessionStorage.getItem('token')
   return config
 }, function (error) {
 // 对请求错误做些什么
