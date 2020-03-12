@@ -11,6 +11,11 @@
     <el-container>
       <!-- 侧边栏 -->
       <!-- 动态控制width，折叠64px，展开200px -->
+      <!-- 1 解决点击高亮 bug  -->
+      <!-- 1.1 :default-active="activePath" -->
+      <!-- 1.2 点击二级标签时绑定事件 @click="saveNaState('' + item2.path)" -->
+      <!-- 1.3 data 中 activePath: '' -->
+      <!-- 1.4 create中 this.activePath = window.sessionStorage.getItem('activePath') -->
       <el-aside :width="isCollapse ? '64px' : '200px'">
         <el-menu
           class="el-menu-vertical-demo"
@@ -18,9 +23,9 @@
           text-color="#fff"
           active-text-color="#409eff"
           unique-opened
-          router
           :collapse="isCollapse"
           :collapse-transition="false"
+          :default-active="activePath"
         >
           <div class="toggle-button" @click="toggleCollapse">|||</div>
           <el-submenu :index="'' + item1.id" v-for="item1 in menulist" :key="item1.id">
@@ -29,7 +34,7 @@
               <i :class="iconObj[item1.id]" style="margin-right: 5px;"></i>
               <span>{{item1.authName}}</span>
             </template>
-            <el-menu-item :index="'' + item2.path" v-for="item2 in item1.children" :key="item2.id">
+            <el-menu-item :index="'' + item2.path" v-for="item2 in item1.children" :key="item2.id" @click="saveNaState('' + item2.path)">
               <!-- 二级菜单模板区域 -->
               <template slot="title">
                 <!-- 根据项目情况是否渲染icon -->
@@ -63,11 +68,14 @@ export default {
         145: 'iconfont iconshujutongji'
       },
       // 是否折叠，默认不折叠
-      isCollapse: false
+      isCollapse: false,
+      // 被激活的链接地址
+      activePath: ''
     }
   },
   created() {
     this.getMenuList()
+    this.activePath = window.sessionStorage.getItem('activePath')
   },
   methods: {
     // 退出
@@ -84,6 +92,11 @@ export default {
     // 点击按钮切换左侧菜单栏的折叠与展开
     toggleCollapse() {
       this.isCollapse = !this.isCollapse
+    },
+    // 1.2 保存链接激活状态
+    saveNaState(activePath) {
+      window.sessionStorage.setItem('activePath', activePath)
+      this.activePath = activePath
     }
   },
   components: {}

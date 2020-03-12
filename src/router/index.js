@@ -23,6 +23,10 @@ const routes = [
       {
         path: '/welcome',
         component: () => import('../components/Welcome')
+      },
+      {
+        path: '/users',
+        component: () => import('../views/Users/Users')
       }
     ]
   }
