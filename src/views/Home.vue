@@ -26,6 +26,7 @@
           :collapse="isCollapse"
           :collapse-transition="false"
           :default-active="activePath"
+          router
         >
           <div class="toggle-button" @click="toggleCollapse">|||</div>
           <el-submenu :index="'' + item1.id" v-for="item1 in menulist" :key="item1.id">
