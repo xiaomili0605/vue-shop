@@ -30,3 +30,12 @@ export const editUserInfo = (id, data) => axios.put(`users/${id}`, data)
  */
 export const removeUser = id => axios.delete(`users/${id}`)
 
+/**
+ * 获取角色列表
+ */
+export const getRoles = _ => axios.get('roles')
+
+/**
+ * 修改用户角色
+ */
+export const editRole = (id, data) => axios.put(`users/${id}/role`, { rid: data })
