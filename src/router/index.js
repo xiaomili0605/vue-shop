@@ -35,6 +35,10 @@ const routes = [
       {
         path: '/roles',
         component: () => import('../views/Power/Roles')
+      },
+      {
+        path: '/categories',
+        component: () => import('../views/goods/Cate')
       }
     ]
   }
