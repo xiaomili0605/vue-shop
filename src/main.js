@@ -11,15 +11,12 @@ import * as filters from './utils/filters'
 
 
 // 注册全局过滤器
-Object.keys(filters).forEach(key => {
-  Vue.filter(key, filters[key])
-})
+// Object.keys(filters).forEach(key => {
+//   Vue.filter(key, filters[key])
+// })
+
+
 Vue.config.productionTip = false
-
-// 全局注册 'vue-table-with-tree-grid'
-
-
-
 new Vue({
   router,
   store,

@@ -3,6 +3,18 @@ import axios from 'axios'
 // 配置代理时，需要这里配置
 axios.defaults.baseURL = 'https://www.liulongbin.top:8888/api/private/v1/'
 
+axios.defaults.timeout = 3000
+axios.defaults.headers['Content-Type'] = 'application/x-www-form-urlencoded';
+axios.defaults.transformRequest = function (data) {
+    if (!data) return data
+    let str = ``
+    for (let key in data) {
+        if (!data.hasOwnProperty(key)) break
+        str += `&${key}=${data[key]}`
+    }
+    return str.substring(1)
+}
+
 // 添加请求拦截器
 axios.interceptors.request.use(function (config) {
   // 每次请求带上 token(第一次是没有token的，因为第一次响应数据中的token才保存sessionStorage中，下次请求就会有了token了)

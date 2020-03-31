@@ -42,7 +42,7 @@
                   @close="handleColsed(ind, scope.row)"
                 >{{item}}</el-tag>
                 <!-- @keyup.enter.native 键盘抬起，摁下enter键盘才会触发 -->
-                <!-- native：使用其他组件时，需要绑定事件时，需要加上native才会生效 -->
+                <!-- native：使用其他组件时，绑定事件时，需要加上native才会生效 -->
                 <el-input
                   class="input-new-tag"
                   v-if="scope.row.inputVisible"
